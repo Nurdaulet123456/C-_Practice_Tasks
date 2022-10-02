@@ -8,99 +8,162 @@ namespace C_
 {
     class Program
     {
-        static void Main(string[] args)
+static void Main(string[] args)
         {
+            Fraction a = new Fraction();
+            a.num = 6;
+            a.den = 7;
+            Fraction b = new Fraction(3, 2);
+            Fraction c = new Fraction(3, 2);
+            Vector3 v1 = new Vector3(1,2,3);
+            Vector3 v2 = new Vector3(4,3,2);
+            double asa = Vector3.DistanseBettween(v1, v2);
+            int s = 5;
 
-            // Number 1
-
-            // Console.WriteLine("Input a symbol: ");
+            Console.WriteLine(b != c);
+            Console.WriteLine(asa);
+            Console.ReadKey();
             
-            // char c = Convert.ToChar(Console.ReadLine());
-
-            // if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
-            //     Console.WriteLine("It is a lowercase vowel: ", c);
-            // } 
-
-            // else if (c >= '0' && c <= '9') {
-            //     Console.WriteLine("No Symbol", c);
-            // }
-            
-            // else {
-            //     Console.WriteLine("The Entered Character doesnot contains  any vowels and digits");
-            // }
-
-            // Console.ReadKey();
-
-
-            // Number 2
-            // Console.WriteLine("Write First Number: ");
-            // int number1 = Convert.ToInt32(Console.ReadLine());
-            // Console.WriteLine("Write Second Number: ");
-            // int number2 = Convert.ToInt32(Console.ReadLine());
-
-            // if ((number1 % 2 == 0) && (number2 % 2 == 0)) {
-            //     Console.WriteLine("there're numbers bothEven");
-            // } else {
-            //     Console.WriteLine("there're numbers odd");
-            // }        
-
-            // Console.ReadKey();       
-
-            // Number 3
-
-            // float meter, hour, minute, second, metrsec, timespec, kph, mph;
-
-            // meter = Convert.ToInt32(Console.ReadLine());
-            // hour = Convert.ToInt32(Console.ReadLine());
-            // minute = Convert.ToInt32(Console.ReadLine());
-            // second = Convert.ToInt32(Console.ReadLine());
-            // timespec = (hour * 3600) + (minute * 60) + second;
-            // metrsec = meter / timespec;
-            // kph = (meter / 1000.0f) / (timespec / 3600.0f);
-            // mph = kph / 1.63f;
-            // Console.WriteLine("Your speed in meters/sec is " + metrsec);
-            // Console.WriteLine("Your speed in km/h is " + kph);
-            // Console.WriteLine("Your speed in miles/h is " + mph);
-
-
-            // Number 4 
-
-            // Console.WriteLine("Write coordinates X and Y: ");
-
-            // int X = Convert.ToInt32(Console.ReadLine());
-            // int Y = Convert.ToInt32(Console.ReadLine());
-
-            // if (X > 0 && Y > 0) Console.WriteLine("The coordinate point ({0},{1}) lies in the First quadrant", X ,Y);
-            // if (X > 0 && Y < 0) Console.WriteLine("The coordinate point ({0},{1}) lies in the Second quadrant", X ,Y);
-            // if (X < 0 && Y < 0) Console.WriteLine("The coordinate point ({0},{1}) lies in the Third quadrant", X ,Y);
-            // if (X < 0 && Y > 0) Console.WriteLine("The coordinate point ({0},{1}) lies in the Fourth quadrant", X ,Y);
-            // if (X == 0 && Y == 0) Console.WriteLine("The coordinate point ({0},{1}) lies in the Origin quadrant", X ,Y);
-            // Console.ReadKey();
-
-            // Number 5
-
-            // Console.WriteLine("Pyramid View with asterisk Symbol");
-            // int i, j, k,N,space, count = 1;
-            // Console.WriteLine("Enter the N Number of Rows");
-            // N = Convert.ToInt32(Console.ReadLine());
-            // space = N + 4 - 1;
-            // for (i = 1; i <= N; i++)
-            // {
-            //     for (j = (N + 4 - 1); j >= 1; j--)
-            //     {
-            //         Console.Write(" ");
-            //     }
-            //     for (k = 1; k <= i; k++)
-            //     {
-            //         Console.Write("{0} ", count++);
-                   
-                   
-            //     }
-            //     Console.WriteLine("\n");
-            //     space-=1;
-            // }
-            // Console.ReadLine();
         }
-}
+        class Fraction {
+            public int num;
+            public int den;
+            public Fraction()
+            {
+                den = 1;
+                Console.WriteLine("A new object");
+            }
+            public Fraction(int num, int den = 1)
+            {
+                this.num = num;
+                this.den = den;
+            }
+            public override string ToString()
+            {
+                return num + "/" + den;
+            }
+            //F(x), Sum(a, b) 
+            // a+b = 
+            // a>b = 
+            public static Fraction operator +(Fraction a, Fraction b)
+            {
+                Fraction c = new Fraction();
+                c.num = a.num * b.den + b.num * a.den;
+                c.den = a.den * b.den;
+                return c;
+            }
+            public static Fraction operator -(Fraction a, Fraction b)
+            {
+                Fraction c = new Fraction();
+                c.num = a.num * b.den - b.num * a.den;
+                c.den = a.den * b.den;
+                return c;
+            }
+            public static bool operator >(Fraction a, Fraction b)
+            {
+                return a.num * b.den > b.num * a.den;
+            }
+            public static bool operator <(Fraction a, Fraction b)
+            {
+                return true;
+            }
+
+            public static bool operator >=(Fraction a, Fraction b)
+            {
+                return a.num * b.den >= b.num * a.den;
+            }
+
+            public static bool operator <=(Fraction a, Fraction b)
+            {
+                return true;
+            }
+
+            public static bool operator ==(Fraction a, Fraction b)
+            {
+                return a.num * b.den == b.num * a.den;
+            }
+
+            public static bool operator !=(Fraction a, Fraction b)
+            {
+                return a.num * b.den != b.num * a.den;
+            }
+        }
+
+        class Vector3
+        {
+            public float x;
+            public float y;
+            public float z;
+
+            public Vector3()
+            {
+                Console.WriteLine("Vector3");
+            }
+
+
+            public Vector3(float x, float y, float z)
+            {
+                this.x = x;
+                this.y = y;
+                this.z = z;
+            }
+
+            public static Vector3 operator +(Vector3 a, Vector3 b)
+            {
+                float resX = a.x + b.x;
+                float resY = a.y + b.y;
+                float resZ = a.z + b.z;
+
+                Vector3 vec = new Vector3(resX, resY, resZ);
+
+                return vec;
+            }
+
+            public static Vector3 operator -(Vector3 a, Vector3 b)
+            {
+                float resX = a.x - b.x;
+                float resY = a.y - b.y;
+                float resZ = a.z - b.z;
+
+                Vector3 vec = new Vector3(resX, resY, resZ);
+
+                return vec;
+            }
+
+            public static Vector3 operator *(Vector3 a, int b)
+            {
+                float resX = a.x * b;
+                float resY = a.y * b;
+                float resZ = a.z * b;
+
+                Vector3 vec = new Vector3(resX, resY, resZ);
+
+                return vec;
+            }
+
+            public static Vector3 operator /(Vector3 a, int b)
+            {
+                float resX = a.x / b;
+                float resY = a.y / b;
+                float resZ = a.z / b;
+
+                Vector3 vec = new Vector3(resX, resY, resZ);
+
+                return vec;
+            }
+
+            public static double DistanseBettween(Vector3 a, Vector3 b)
+            {
+                double res = Math.Sqrt(Math.Pow((b.x - a.x), 2) + Math.Pow((b.y - a.y), 2) + Math.Pow((b.z - a.z), 2));
+
+                return res;
+            }
+
+            public override string ToString()
+            {
+                return "(" + x + ", " + y + ", " + z + ")";
+            }
+        }
+    }
 
 }
