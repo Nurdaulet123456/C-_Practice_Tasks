@@ -25,13 +25,14 @@ static void Main(string[] args)
             Console.ReadKey();
             
         }
+
+        // Fraction
         class Fraction {
             public int num;
             public int den;
             public Fraction()
             {
                 den = 1;
-                Console.WriteLine("A new object");
             }
             public Fraction(int num, int den = 1)
             {
@@ -89,6 +90,8 @@ static void Main(string[] args)
             }
         }
 
+        // Vector3
+
         class Vector3
         {
             public float x;
@@ -97,7 +100,9 @@ static void Main(string[] args)
 
             public Vector3()
             {
-                Console.WriteLine("Vector3");
+                this.x = 1;
+                this.y = 1;
+                this.z = 1;
             }
 
 
