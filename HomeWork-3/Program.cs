@@ -8,24 +8,33 @@ namespace HomeWork_3
         {
             Console.WriteLine("Welcome to Program");
             Canon c = new Canon("Canon", 2015);
+            Nicon n = new Camera("Nicon", 2008);
 
             Console.WriteLine(c.InfoAboutCamera());
+            Console.WriteLine(c.buyCamera(3));
+
+            Console.WriteLine(n.InfoAboutCamera());
+            Console.WriteLine(n.buyCamera(3));
+
+            Console.ReadKey();
         }
     }
 
     class Camera {
-    string name;
-    int age;
-    int count = 0;
+    public readonly string name;
+    public int age;
+    public int count = 0;
         public Camera() {
         }
 
         public Camera(
             string name,
-            int age
+            int age,
+            int count
         ) {
             this.name = name;
             this.age = age;
+            this.count = count;
         }
 
         public string Name {
@@ -48,11 +57,21 @@ namespace HomeWork_3
             }
         }
 
+        public int Count {
+            get {
+                return this.count;
+            }
+
+            set {
+                this.count = value;
+            }
+        }
+
         public virtual string InfoAboutCamera() {
             return $"Camera Name: {this.name} \n Camera Age: {this.age}";
         }
 
-        public static int buyCamera(int count) {
+        public virtual int buyCamera(int count) {
             int buy = 0;
             for (int i = 0; i < count; i++) {
                  buy += count;
@@ -63,9 +82,9 @@ namespace HomeWork_3
     }
 
     class Canon : Camera {
-        string name;
-        int age;
-        int count;
+        public readonly string name;
+        public int age;
+        public int count;
 
         public Canon() {
         } 
@@ -78,20 +97,29 @@ namespace HomeWork_3
             get; set;
         }
 
-        public Canon(string name, int age) : base(name, age) {
+        public Canon(string name, int age, int count) : base(name, age, count) {
             Name = name;
             Age = age;
         }
 
+        public override int buyCamera(int count) {
+            int buy = 0;
+            for (int i = 0; i < count; i++) {
+                 buy += count;
+            }
+
+            return buy;
+        }
+
         public override string InfoAboutCamera() {
-            return $"Camera Name: {this.name}\nCamera Age: {this.age}";
+            return $"Camera Name: {this.name}\nCamera Age: {this.age}\nCamera Count: {this.count}";
         }
     }
 
     class Nicon : Camera {
-    string name;
-    int age;
-    int count;
+   public readonly string name;
+   public int age;
+   public int count;
 
     public Nicon() {
         this.name = "";
@@ -107,9 +135,23 @@ namespace HomeWork_3
         get; set;
     }
 
-    public Nicon(string name, int age) : base(name, age) {
+    int Count {
+        get; set;
+    }
+
+    public Nicon(string name, int age, int count) : base(name, age, count) {
         Name = name;
         Age = age;
+        Count = count;
+    }
+
+    public override int buyCamera(int count) {
+            int buy = 0;
+            for (int i = 0; i < count; i++) {
+                 buy += count;
+            }
+
+            return buy;
     }
 
     public override  string InfoAboutCamera() {
